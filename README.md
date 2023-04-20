@@ -12,6 +12,7 @@ The script is for cases where there are four choices along the same row, and the
 
 Below is the original code by Ben Collins. Credit him by referring to his tutorial( https://www.benlcollins.com/apps-script/radio-buttons-in-google-sheets/ ) 
 
+```
 /**
  * onEdit to uncheck checkboxes as required
  */
@@ -51,9 +52,13 @@ function onEdit(e) {
   }
 }
 
+```
+
 ### Three choices, located in Columns B to D
 
 This is a modification of the original code I made:
+
+```
 
 /**
  * onEdit to uncheck checkboxes as required
@@ -89,20 +94,30 @@ function onEdit(e) {
   }
 }
 
+```
+
 ### Explanation of the Script for Further Modification
 
 When a checkbox is ticked, the script detects where the checkbox is, and then clears all the other specified checkboxes along the same row as the one ticked. To modify the script for the case where the columns of checkboxes are not located at Columns B to E, you need to change the following part of the code:
+
+```
 
     // case when column C is checked
     case 3:
       sheet.getRangeList(["B" + row,"D" + row + ":E" + row]).uncheck();
       break;
 
+```
+
 The input inside sheet.getRangeList specifies the cells with checkboxes to untick. For the example above, it clears the checkboxes at the cell under Column B, Column D, and Column E along the same row as the one ticked. Change it to the cells under other columns if the checkboxes are located at the other columns. For example, if you place the checkboxes to Columns F to H and you want the script to clear the checkbox under Column F and H if the checkbox under Column G is ticked, then the code should be modified as:
+
+```
 
     // case when column G is checked
     case 3:
       sheet.getRangeList(["F" + row,"H" + row]).uncheck();
       break;
+
+```
 
 This will clear the checkbox under columns F and H. 
